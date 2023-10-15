@@ -35,12 +35,26 @@ class HBNBCommmand(cmd.Cmd):
         elif args[0] not in HBNBCommand.__classes:
             print("** class doesn't exist **")
         else:
+            new_creation = eval(args[0] + '()')
+            models.storage.save()
+            print(new_creation.id)
+
+    def do_show(self, args):
+        '''Prints the string repesentasion of a specific instance'''
+        strings = args.split()
+        if len(strings) == 0:
+            print("** class name missing **")
+        elif strings[0] not in HBNBCommand.__classes:
+            print("** class doesn't exist **")
+        elif len(strings) == 1:
+            print("** instance id missing **")
+        else:
             obj = models.storage.all()
-            key_value = string[0] + '.' + string[1]
+            key_value = strings[0] + '.' + strings[1]
             if key_value in obj:
                 print(obj[key_value])
             else:
-                print("** instance found **")
+                print("** no instance found **")
 
     def do_destroy(self, args):
         """Delete an instance Usage: destroy <class name> <id>"""
