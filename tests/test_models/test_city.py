@@ -17,8 +17,8 @@ class TestCity(unittest.TestCase):
 
     def test_pep8_conformance_city(self):
         """Test that models/city.py conforms to PEP8."""
-        pep8style = pep8.styleGuide(quite=True)
-        result = pep8Style.check_files(['models/city.py'])
+        pep8style = pep8.StyleGuide(quite=True)
+        result = pep8style.check_files(['models/city.py'])
         self.assertEqual(result.total_errors, 0,
                         "Found code style errors (and warning).")
 
@@ -31,7 +31,7 @@ class TestCity(unittest.TestCase):
 
     def test_doc_constructor(self):
         """Construction documentation"""
-        doc = City.__init__.doc__
+        doc = City.__init__.__doc__
         self.assertGreater(len(doc), 1)
 
     def test_class(self):
@@ -41,7 +41,7 @@ class TestCity(unittest.TestCase):
 
         with self.subTest(msg='Attributes'):
             self.assertIsInstance(City.name, str)
-            self.assertIsInstance(City.state_state_id, str)
+            self.assertIsInstance(City.state_id, str)
 
 if __name__ == '__main__':
     unittest.main()

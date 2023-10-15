@@ -9,6 +9,7 @@ from models.place import Place
 from models.review import Review
 from models.state import State
 
+
 class FileStorage():
     """FileStorage class"""
     __file_path = "file.json"
@@ -18,6 +19,7 @@ class FileStorage():
         """public instance method that returns the
         dictionary __objects."""
         return FileStorage.__objects
+
     def new(self, obj):
         """public instance method that sets in __objects
         the obj with key <obj class name>.id
@@ -26,6 +28,7 @@ class FileStorage():
         if obj:
             key = "{}.{}".format(obj.__class__.__name__, obj.id)
             FileStorage.__objects[key] = obj
+
     def save(self):
         """
         public instance method that serializes __objects
@@ -37,6 +40,7 @@ class FileStorage():
             new_dict[key] = value.to_dict().copy()
         with open(FileStorge.__file_path, model='w') as my_file:
             json.dump(new_dict, my_file)
+
     def reload(self):
         """
         publec instance method that deserializes a JSON
