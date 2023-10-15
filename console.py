@@ -15,7 +15,7 @@ from models.review import Review
 
 
 class HBNBCommand(cmd.Cmd):
-    prompt = '(hbnb)'
+    prompt = '(hbnb) '
     __classes = [
             "Amenity",
             "BaseModel",
@@ -151,7 +151,7 @@ class HBNBCommand(cmd.Cmd):
                     return None
 
     def no_quit(self, args):
-        """<Quit> Command To Exit The Program"""
+        '''Quit Command To Exit The Program'''
         return True
 
     def do_EOF(self, args):
