@@ -14,7 +14,7 @@ from models.place import Place
 from models.review import Review
 
 
-class HBNBCommmand(cmd.Cmd):
+class HBNBCommand(cmd.Cmd):
     prompt = '(hbnb)'
     __classes = [
             "Amenity",
