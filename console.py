@@ -25,10 +25,11 @@ class HBNBCommand(cmd.Cmd):
             "State",
             "User"
             ]
+
     def do_create(self, args):
-        """Create a new instance of BaseModel, save it and prints the id
+        '''Create a new instance of BaseModel, save it and prints the id
         Usage: create <class name>
-        """
+        '''
         args = args.split()
         if len(args) == 0:
             print("** class name missing **")
@@ -68,7 +69,7 @@ class HBNBCommand(cmd.Cmd):
         elif len(args) == 1:
             print('** instance id missing **')
         else:
-            key_find = args[0] + '.' + args[0]
+            key_find = args[0] + '.' + args[1]
             if key_find in objects.keys():
                 objects.pop(key_find, None)
                 models.storage.save()
@@ -80,8 +81,8 @@ class HBNBCommand(cmd.Cmd):
            Usage: all <class name>
         """
         args = args.split()
-        object = models.storage.all()
-        new = []
+        objects = models.storage.all()
+        new_list = []
 
         if len(args) == 0:
             for obj in objects.values():
@@ -90,7 +91,7 @@ class HBNBCommand(cmd.Cmd):
         elif args[0] not in HBNBCommand.__classes:
             print("** class doesn't exit **")
         else:
-            for obj in objects.value():
+            for obj in objects.values():
                 if obj.__class__.__name__ == args[0]:
                     new_list.append(obj.__str__())
                 print(new_list)
@@ -120,8 +121,9 @@ class HBNBCommand(cmd.Cmd):
                 print("** no instance found **")
                 return
 
-            setattr(onj, args[2], args[3].lstrip('"').rstrip('"'))
+            setattr(obj, args[2], args[3].lstrip('"').rstrip('"'))
             models.storage.save()
+
     def check_class_name(self, name=""):
         """Check if stdin user  typed class name and id."""
         if len(name) == 0:
